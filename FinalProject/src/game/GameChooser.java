@@ -2,6 +2,7 @@ package game;
 
 import java.util.Scanner;
 
+//A class made so the user can select the game they want to play.
 public class GameChooser {
 
 	public static void main(String[] args) {
