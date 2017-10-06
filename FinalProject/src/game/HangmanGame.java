@@ -29,6 +29,11 @@ public class HangmanGame {
 		
 		hangman();
 		
+		for(int x = 0; x < words[word].length(); x++)
+		{
+			System.out.print(words[word].replaceAll(".+", "-"));
+		}
+		
 		/* Using placeholder variables to show an example of replacing hidden characters with correct ones the user guesses. 
 		if(words[word].indexOf(userGuess) != -1)
 		{
