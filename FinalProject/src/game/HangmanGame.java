@@ -113,16 +113,42 @@ public class HangmanGame {
 				"|_________\r\n" + 
 				"\r\n" + 
 				"");
+		hangmanRightLeg();
 	}
 	
 	public static void hangmanRightLeg()
 	{
-		
+		System.out.println("__________\r\n" + 
+				"|        |\r\n" + 
+				"|        |\r\n" + 
+				"|     -------\r\n" + 
+				"|      (-_-)\r\n" + 
+				"|        |	\r\n" + 
+				"|      / | \\\r\n" + 
+				"|        |   \r\n" + 
+				"|      /   \r\n" + 
+				"|  	      \r\n" + 
+				"|_________\r\n" + 
+				"\r\n" + 
+				"");
+		hangmanLeftLeg();
 	}
 	
 	public static void hangmanLeftLeg()
 	{
-		
+		System.out.println("__________\r\n" + 
+				"|        |\r\n" + 
+				"|        |\r\n" + 
+				"|     -------\r\n" + 
+				"|      (-_-)\r\n" + 
+				"|        |	\r\n" + 
+				"|      / | \\\r\n" + 
+				"|        |   \r\n" + 
+				"|      /   \\ \r\n" + 
+				"|  	      \r\n" + 
+				"|_________\r\n" + 
+				"\r\n" + 
+				"");
 	}
 	
 	// Displays the intro to hangman, for style
