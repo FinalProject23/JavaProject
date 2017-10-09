@@ -14,43 +14,49 @@ public class HangmanGame {
 	static char userGuess = 0;
 	//Create string array for words that are used in game. 
 	static String [] words = {"royal", "heavy", "scuzz", "memes", "dizzy", "abuzz"};
+	static char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 	static char [] guessedLetters = new char[26];
 	//Randomly select a word from the word array.
 	static int word = random.nextInt(words.length);
 	static String hiddenWord = words[word], newHiddenWord = null;
+	static int letterAt = 0;
 	
 	public static void main(String[] args) {
 		//System.out.println("Welcome to Hangman!");
 		//System.out.println("Your word is " + words[word]);
 		display();
 		hangman();
-		//Replaces all the characters in the word with "-"s
 		
+		//Replaces all the characters in the word with "-"s
 		for(int x = 0; x < hiddenWord.length(); x++)
-			newHiddenWord = hiddenWord.replaceAll(".+", "-");
+			newHiddenWord = hiddenWord.replaceAll(".", "-");
 		
 		System.out.println();
 		System.out.println(newHiddenWord);
-		System.out.println("Please guess a letter!");
+		
+		do {
+		System.out.println("Guess a letter!");
 		userGuess = input.next().charAt(0);
 		
 		/* Replacing hidden characters with correct ones the user guesses. 
 		.indexOf detects to see if the character is in the string, if it is it returns a positive number, if not it returns a negative number.
 		We put in an if statement for when the user correctly guesses a letter in the word. */
 		
-		
-		
-		if(words[word].indexOf(userGuess) != -1)
+		if(hiddenWord.indexOf(userGuess) != -1)
 		{
-			hiddenWord = words[word].replace('-', userGuess);
-			System.out.println(hiddenWord);
+			
+			newHiddenWord = newHiddenWord.replace('-', userGuess);
+			System.out.println(newHiddenWord);
+			System.out.println("Correct!");
 		}
 		else
 		{
-			System.out.println("Incorrect!");
-			System.out.println(newHiddenWord);
 			hangmanHead();
+			System.out.println("Incorrect!");
+			System.out.println(guessedLetters);
+			System.out.println(newHiddenWord);
 		}
+	}while(!newHiddenWord.equals("-"));
 		
 	}
 	
@@ -69,9 +75,6 @@ public class HangmanGame {
 				"|_________\r\n" + 
 				"\r\n" + 
 				"");
-		
-		
-		
 	}
 	
 	public static void hangmanHead()
@@ -89,7 +92,6 @@ public class HangmanGame {
 				"|_________\r\n" + 
 				"\r\n" + 
 				"");
-		
 	}
 	
 	public static void hangmanRightArm()
@@ -125,7 +127,6 @@ public class HangmanGame {
 				"|_________\r\n" + 
 				"\r\n" + 
 				"");
-		
 	}
 	
 	public static void hangmanRightLeg()
@@ -143,7 +144,6 @@ public class HangmanGame {
 				"|_________\r\n" + 
 				"\r\n" + 
 				"");
-		
 	}
 	
 	public static void hangmanLeftLeg()
