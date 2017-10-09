@@ -14,12 +14,12 @@ public class HangmanGame {
 	static char userGuess = 0;
 	//Create string array for words that are used in game. 
 	static String [] words = {"royal", "heavy", "scuzz", "memes", "dizzy", "abuzz"};
-	static char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+	static String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 	static char [] guessedLetters = new char[26];
 	//Randomly select a word from the word array.
 	static int word = random.nextInt(words.length);
 	static String hiddenWord = words[word], newHiddenWord = null;
-	static int letterAt = 0;
+	static String letterAt = null;
 	
 	public static void main(String[] args) {
 		//System.out.println("Welcome to Hangman!");
@@ -35,7 +35,7 @@ public class HangmanGame {
 		System.out.println(newHiddenWord);
 		
 		do {
-		System.out.println("Guess a letter!");
+		System.out.println("Guess a (lowercase plz) letter!");
 		userGuess = input.next().charAt(0);
 		
 		/* Replacing hidden characters with correct ones the user guesses. 
@@ -44,21 +44,23 @@ public class HangmanGame {
 		
 		if(hiddenWord.indexOf(userGuess) != -1)
 		{
-			
-			newHiddenWord = newHiddenWord.replace('-', userGuess);
+			letterAt = hiddenWord;
+			//newHiddenWord = newHiddenWord.replace();
 			System.out.println(newHiddenWord);
 			System.out.println("Correct!");
 		}
 		else
 		{
 			hangmanHead();
-			System.out.println("Incorrect!");
 			System.out.println(guessedLetters);
 			System.out.println(newHiddenWord);
+			System.out.println("Incorrect!");
+			
 		}
 	}while(!newHiddenWord.equals("-"));
 		
 	}
+	
 	
 	// Used to display hangman gallows
 	public static void hangman()
