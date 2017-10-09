@@ -26,9 +26,11 @@ public class HangmanGame {
 		hangman();
 		//Replaces all the characters in the word with "-"s
 		
-		//newHiddenWord = hiddenWord.replaceAll(".+", "-");
+		for(int x = 0; x < hiddenWord.length(); x++)
+			newHiddenWord = hiddenWord.replaceAll(".+", "-");
 		
 		System.out.println();
+		System.out.println(newHiddenWord);
 		System.out.println("Please guess a letter!");
 		userGuess = input.next().charAt(0);
 		
@@ -176,23 +178,9 @@ public class HangmanGame {
 	
 	public static void characterInWord()
 	{
-		StringBuilder sb = new StringBuilder(hiddenWord);
-	    for(int i = 0; i < hiddenWord.length(); i++)
-	    {
-	        for (int j = 0; j < firstCharArray.length; j++)
-	        {
-	            if (sb.charAt(i) == firstCharArray[j])
-	            {
-	                sb.setCharAt(i, secondCharArray[j]);
-	                break;
-	            }
-
-	        }
-	    }
-		for(int y = 0; y < newHiddenWord.length(); y++)
-		{
-			
-		}
+		
+	        
+	   
 	}
 
 }
