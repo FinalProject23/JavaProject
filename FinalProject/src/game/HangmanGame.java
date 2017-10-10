@@ -62,21 +62,33 @@ public class HangmanGame {
 			if(numberOfTries == 5)
 			{
 				hangmanHead();	
+				System.out.println(guessedLetters);
+				System.out.println(newHiddenWord);
+				System.out.println("Incorrect!");
 			}
 
 			if(numberOfTries == 4)
 			{
 				hangmanRightArm();
+				System.out.println(guessedLetters);
+				System.out.println(newHiddenWord);
+				System.out.println("Incorrect!");
 			}
 				
 			if(numberOfTries == 3)
 			{
 				hangmanLeftArm();
+				System.out.println(guessedLetters);
+				System.out.println(newHiddenWord);
+				System.out.println("Incorrect!");
 			}
 					
 			if(numberOfTries == 2)
 			{	
 				hangmanRightLeg();
+				System.out.println(guessedLetters);
+				System.out.println(newHiddenWord);
+				System.out.println("Incorrect!");
 			}
 			
 			if(numberOfTries == 1)
@@ -85,11 +97,8 @@ public class HangmanGame {
 				System.out.println("Oh, too bad! You lost! :(");
 				System.out.println("The actual word was " + hiddenWord);
 				lostGame = true;
+				GameChooser.main(words);
 			}	
-			
-			System.out.println(guessedLetters);
-			System.out.println(newHiddenWord);
-			System.out.println("Incorrect!");
 		}
 		
 		if(newHiddenWord.equals(hiddenWord))
@@ -101,18 +110,15 @@ public class HangmanGame {
 			}
 			
 		}
-	}while(lostGame);
-		
+	}while(!lostGame);
 	}
-	
 	
 	private static void victoryScreen() {
 		System.out.println(hiddenWord);
 		System.out.println("Congratulations! You won!");
 		GameChooser.main(words);
 	}
-
-
+	
 	// Used to display hangman gallows
 	public static void hangman()
 	{
