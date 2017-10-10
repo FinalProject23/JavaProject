@@ -26,7 +26,7 @@ public class HangmanGame {
 	public static void main(String[] args) {
 		display();
 		hangman();
-		boolean wordGuessed = false;
+		boolean wordGuessed, lostGame = false;
 		
 		//Replaces all the characters in the word with "-"s
 		for(int x = 0; x < hiddenWord.length(); x++)
@@ -36,9 +36,9 @@ public class HangmanGame {
 		System.out.println(newHiddenWord);
 		
 		do {
+		
 		System.out.println("Guess a (lowercase plz) letter!");
 		userGuess = input.next().charAt(0);
-		
 		
 		/* Replacing hidden characters with correct ones the user guesses. 
 		.indexOf detects to see if the character is in the string, if it is it returns a positive number, if not it returns a negative number.
@@ -50,6 +50,9 @@ public class HangmanGame {
 			//newHiddenWord = newHiddenWord.replace();
 			System.out.println(newHiddenWord);
 			System.out.println("Correct!");
+			
+			//Use replaceAll to select regex (specific character) to replace. Replace the dashes with the userGuess character so that way
+			//the non matching characters can stay as dashes.
 		}
 		else
 		{
@@ -80,7 +83,8 @@ public class HangmanGame {
 			{
 				hangmanLeftLeg();
 				System.out.println("Oh, too bad! You lost! :(");
-				System.out.println("The actual word was " + hiddenWord);		
+				System.out.println("The actual word was " + hiddenWord);
+				lostGame = true;
 			}	
 			
 			System.out.println(guessedLetters);
@@ -97,7 +101,7 @@ public class HangmanGame {
 			}
 			
 		}
-	}while(!newHiddenWord.equals("-"));
+	}while(lostGame);
 		
 	}
 	
