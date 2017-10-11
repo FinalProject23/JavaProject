@@ -12,14 +12,14 @@ public class HangmanGame {
 	static Scanner input = new Scanner(System.in);
 	static Random random = new Random();
 	static char userGuess = 0;
+	static char[] guesses = new char[26];
 	//Create string array for words that are used in game. 
 	static String [] words = {"royal", "heavy", "scuzz", "memes", "dizzy", "abuzz"};
 	//static String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-	static char[] guessedLetters = new char[26];
 	//Randomly select a word from the word array.
 	static int word = random.nextInt(words.length);
 	static String hiddenWord = words[word], newHiddenWord = null;
-	static String letterAt = null;
+	static int letterAt = 0;
 	//Number of tries will be 6 so the hangman methods can properly execute.
 	static int numberOfTries = 6;
 	
@@ -27,6 +27,8 @@ public class HangmanGame {
 		display();
 		hangman();
 		boolean wordGuessed, lostGame = false;
+		//Make variable to be used later on, when replacing dashes in the hidden word.
+		char letterToReplace;
 		
 		//Replaces all the characters in the word with "-"s
 		for(int x = 0; x < hiddenWord.length(); x++)
@@ -34,10 +36,10 @@ public class HangmanGame {
 		
 		System.out.println();
 		System.out.println(newHiddenWord);
+		System.out.println("You get 5 tries before the man is hung, guess the word or ye shall be done.");
 		
 		do {
-		
-		System.out.println("Guess a (lowercase plz) letter!");
+		System.out.println("Guess a (lowercase) letter >> ");
 		userGuess = input.next().charAt(0);
 		
 		/* Replacing hidden characters with correct ones the user guesses. 
@@ -46,8 +48,23 @@ public class HangmanGame {
 		
 		if(hiddenWord.indexOf(userGuess) != -1)
 		{
-			letterAt = hiddenWord;
-			//newHiddenWord = newHiddenWord.replace();
+			if(hiddenWord.length() > userGuess)
+			{
+				for(int x = 0; x < hiddenWord.length(); x++)
+				{
+					if(hiddenWord.charAt(x) != userGuess)
+					{
+						continue;
+					}
+					else if (hiddenWord.charAt(x) == userGuess)
+					{
+						x = letterAt;
+						letterToReplace = hiddenWord.charAt(letterAt);
+						newHiddenWord = newHiddenWord.replace(letterToReplace, userGuess);
+					}
+				}
+			}
+			
 			System.out.println(newHiddenWord);
 			System.out.println("Correct!");
 			
@@ -62,7 +79,6 @@ public class HangmanGame {
 			if(numberOfTries == 5)
 			{
 				hangmanHead();	
-				System.out.println(guessedLetters);
 				System.out.println(newHiddenWord);
 				System.out.println("Incorrect!");
 			}
@@ -70,7 +86,6 @@ public class HangmanGame {
 			if(numberOfTries == 4)
 			{
 				hangmanRightArm();
-				System.out.println(guessedLetters);
 				System.out.println(newHiddenWord);
 				System.out.println("Incorrect!");
 			}
@@ -78,7 +93,6 @@ public class HangmanGame {
 			if(numberOfTries == 3)
 			{
 				hangmanLeftArm();
-				System.out.println(guessedLetters);
 				System.out.println(newHiddenWord);
 				System.out.println("Incorrect!");
 			}
@@ -86,7 +100,6 @@ public class HangmanGame {
 			if(numberOfTries == 2)
 			{	
 				hangmanRightLeg();
-				System.out.println(guessedLetters);
 				System.out.println(newHiddenWord);
 				System.out.println("Incorrect!");
 			}
@@ -94,10 +107,8 @@ public class HangmanGame {
 			if(numberOfTries == 1)
 			{
 				hangmanLeftLeg();
-				System.out.println("Oh, too bad! You lost! :(");
-				System.out.println("The actual word was " + hiddenWord);
 				lostGame = true;
-				GameChooser.main(words);
+				losingScreen();
 			}	
 		}
 		
@@ -108,7 +119,6 @@ public class HangmanGame {
 			{
 				victoryScreen();
 			}
-			
 		}
 	}while(!lostGame);
 	}
@@ -116,6 +126,12 @@ public class HangmanGame {
 	private static void victoryScreen() {
 		System.out.println(hiddenWord);
 		System.out.println("Congratulations! You won!");
+		GameChooser.main(words);
+	}
+	
+	private static void losingScreen() {
+		System.out.println("Oh, too bad! You lost! :(");
+		System.out.println("The actual word was " + hiddenWord);
 		GameChooser.main(words);
 	}
 	
@@ -234,5 +250,4 @@ public class HangmanGame {
 				"                    __/ |                      \r\n" + 
 				"                   |___/                       ");
 	}
-
 }
