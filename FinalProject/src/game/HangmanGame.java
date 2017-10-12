@@ -4,11 +4,13 @@ import java.util.Scanner;
 import java.util.Random;
 
 
+
 /* This program is basically a hangman game but written in Java. Made for classwork/entertainment purposes only.
 // It will show the gallows, add a limb each time you get it wrong, and show you the letters that you have guessed. 
 Chooses a random word from the string array to use for the game */
-public class HangmanGame {
 
+public class HangmanGame
+{
 	static Scanner input = new Scanner(System.in);
 	static Random random = new Random();
 	static char userGuess = 0;
@@ -22,30 +24,38 @@ public class HangmanGame {
 	static int letterAt = 0;
 	//Number of tries will be 6 so the hangman methods can properly execute.
 	static int numberOfTries = 6;
-	
+  
 	public static void main(String[] args) {
 		display();
 		hangman();
+
 		boolean wordGuessed, lostGame = false;
 		//Make variable to be used later on, when replacing dashes in the hidden word.
 		char letterToReplace;
 		
+    
 		//Replaces all the characters in the word with "-"s
+	
 		for(int x = 0; x < hiddenWord.length(); x++)
-			newHiddenWord = hiddenWord.replaceAll(".", "-");
-		
+		newHiddenWord = hiddenWord.replaceAll(".", "-");
+
 		System.out.println();
 		System.out.println(newHiddenWord);
+
 		System.out.println("You get 5 tries before the man is hung, guess the word or ye shall be done.");
 		
 		do {
 		System.out.println("Guess a (lowercase) letter >> ");
 		userGuess = input.next().charAt(0);
+	
+
 		
 		/* Replacing hidden characters with correct ones the user guesses. 
 		.indexOf detects to see if the character is in the string, if it is it returns a positive number, if not it returns a negative number.
 		We put in an if statement for when the user correctly guesses a letter in the word. */
 		
+	
+
 		if(hiddenWord.indexOf(userGuess) != -1)
 		{
 			if(hiddenWord.length() > userGuess)
@@ -150,8 +160,9 @@ public class HangmanGame {
 				"|_________\r\n" + 
 				"\r\n" + 
 				"");
-	}
-	
+
+}
+
 	public static void hangmanHead()
 	{
 		System.out.println("__________\r\n" + 
@@ -167,8 +178,10 @@ public class HangmanGame {
 				"|_________\r\n" + 
 				"\r\n" + 
 				"");
+
+		
 	}
-	
+  
 	public static void hangmanRightArm()
 	{
 		System.out.println("__________\r\n" + 
@@ -202,6 +215,7 @@ public class HangmanGame {
 				"|_________\r\n" + 
 				"\r\n" + 
 				"");
+
 	}
 	
 	public static void hangmanRightLeg()
@@ -219,6 +233,7 @@ public class HangmanGame {
 				"|_________\r\n" + 
 				"\r\n" + 
 				"");
+
 	}
 	
 	public static void hangmanLeftLeg()
@@ -250,4 +265,3 @@ public class HangmanGame {
 				"                    __/ |                      \r\n" + 
 				"                   |___/                       ");
 	}
-}
