@@ -8,9 +8,11 @@ public class TicTacToe {
 	static Scanner input = new Scanner(System.in);
 	static Random side = new Random();
 	static int userSide;
-	
+	static  Scanner input = new Scanner(System.in);
+	static	Random side = new Random();
+	static	int userSide;
+  
 	public static void main(String[] args) {
-	
 		final int SIZE = 3;
 		char[][] board = new char[SIZE][SIZE]; //game board
 		resetBoard(board); // initialize the board (with ' ' for all cells)
