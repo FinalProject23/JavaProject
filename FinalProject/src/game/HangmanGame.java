@@ -29,6 +29,8 @@ public class HangmanGame {
 		boolean wordGuessed, lostGame = false;
 		//Make variable to be used later on, when replacing dashes in the hidden word.
 		char letterToReplace;
+		int position = 0;
+		final int WORD_LENGTH = hiddenWord.length();
 		
 		//Replaces all the characters in the word with "-"s
 		for(int x = 0; x < hiddenWord.length(); x++)
@@ -42,28 +44,38 @@ public class HangmanGame {
 		System.out.println("Guess a (lowercase) letter >> ");
 		userGuess = input.next().charAt(0);
 		
+		for(int i = 0; i < guesses.length; i++) {
+			userGuess = guesses[i];
+		}
+		
 		/* Replacing hidden characters with correct ones the user guesses. 
 		.indexOf detects to see if the character is in the string, if it is it returns a positive number, if not it returns a negative number.
 		We put in an if statement for when the user correctly guesses a letter in the word. */
 		
+		
+		
 		if(hiddenWord.indexOf(userGuess) != -1)
 		{
-			if(hiddenWord.length() > userGuess)
-			{
+			/*
+				System.out.println("True");
 				for(int x = 0; x < hiddenWord.length(); x++)
 				{
 					if(hiddenWord.charAt(x) != userGuess)
 					{
+						System.out.println("Not equal to");
 						continue;
 					}
-					else if (hiddenWord.charAt(x) == userGuess)
+					if (hiddenWord.charAt(x) == userGuess)
 					{
 						x = letterAt;
 						letterToReplace = hiddenWord.charAt(letterAt);
-						newHiddenWord = newHiddenWord.replace(letterToReplace, userGuess);
+						StringBuilder alteredHiddenWord = new StringBuilder(newHiddenWord);
+						alteredHiddenWord.setCharAt(letterToReplace, userGuess);
+						
+						//newHiddenWord = newHiddenWord.replace((char) letterToReplace, userGuess);
 					}
-				}
-			}
+				}*/
+			
 			
 			System.out.println(newHiddenWord);
 			System.out.println("Correct!");
@@ -78,7 +90,7 @@ public class HangmanGame {
 			//making the code move onto the next one each time. 
 			if(numberOfTries == 5)
 			{
-				hangmanHead();	
+				hangmanHead();
 				System.out.println(newHiddenWord);
 				System.out.println("Incorrect!");
 			}
@@ -126,13 +138,12 @@ public class HangmanGame {
 	private static void victoryScreen() {
 		System.out.println(hiddenWord);
 		System.out.println("Congratulations! You won!");
-		GameChooser.main(words);
+
 	}
 	
 	private static void losingScreen() {
 		System.out.println("Oh, too bad! You lost! :(");
 		System.out.println("The actual word was " + hiddenWord);
-		GameChooser.main(words);
 	}
 	
 	// Used to display hangman gallows
