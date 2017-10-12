@@ -7,8 +7,10 @@ import java.util.Random;
 public class TicTacToe {
 	static Scanner input = new Scanner(System.in);
 	static Random side = new Random();
-	static int userSide;
-	
+	static String userMove;
+	static String userSymbol;
+	static String player1;
+	static String player2;
 	public static void main(String[] args) {
 	
 		final int SIZE = 3;
@@ -24,6 +26,18 @@ public class TicTacToe {
 		
 		System.out.println();
 		System.out.println("Welcome to tic tac toe!");
+		System.out.println("Which Symbol would you want to play, \"x\" or \"o\"? ");
+		 userSymbol = input.nextLine();
+		 if(userSymbol == "x");
+		 {
+			 
+		 }
+		 
+		System.out.println("Would you like to go first \"1\" or second \"2\"? ");
+		userMove = input.nextLine();
+		
+		
+		
 		showBoard(board);
 		
 		
