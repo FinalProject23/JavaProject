@@ -3,8 +3,6 @@ package game;
 import java.util.Scanner;
 import java.util.Random;
 
-
-
 /* This program is basically a hangman game but written in Java. Made for classwork/entertainment purposes only.
 // It will show the gallows, add a limb each time you get it wrong, and show you the letters that you have guessed. 
 Chooses a random word from the string array to use for the game */
@@ -14,89 +12,52 @@ public class HangmanGame
 	static Scanner input = new Scanner(System.in);
 	static Random random = new Random();
 	static char userGuess = 0;
-	static char[] guesses = new char[26];
 	//Create string array for words that are used in game. 
 	static String [] words = {"royal", "heavy", "scuzz", "memes", "dizzy", "abuzz"};
-	//static String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 	//Randomly select a word from the word array.
 	static int word = random.nextInt(words.length);
 	static String hiddenWord = words[word], newHiddenWord = null;
-	static int letterAt = 0;
 	//Number of tries will be 6 so the hangman methods can properly execute.
 	static int numberOfTries = 6;
   
 	public static void main(String[] args) {
-		display();
-		hangman();
-
-		boolean wordGuessed, lostGame = false;
+		boolean wordGuessed = false, lostGame = false;
 		//Make variable to be used later on, when replacing dashes in the hidden word.
-		char letterToReplace;
 		int position = 0;
 		final int WORD_LENGTH = hiddenWord.length();
+		char letter = 0;
+		display();
+		hangman();
 		
     
 		//Replaces all the characters in the word with "-"s
-	
 		for(int x = 0; x < hiddenWord.length(); x++)
-		newHiddenWord = hiddenWord.replaceAll(".", "-");
+			newHiddenWord = hiddenWord.replaceAll(".", "-");
 
 		System.out.println();
 		System.out.println(newHiddenWord);
-
 		System.out.println("You get 5 tries before the man is hung, guess the word or ye shall be done.");
 		
+		//Do while loop so it at least executes once.
 		do {
 		System.out.println("Guess a (lowercase) letter >> ");
 		userGuess = input.next().charAt(0);
-	
-
 		
-		for(int i = 0; i < guesses.length; i++) {
-			userGuess = guesses[i];
-		}
-		
-		/* Replacing hidden characters with correct ones the user guesses. 
-		.indexOf detects to see if the character is in the string, if it is it returns a positive number, if not it returns a negative number.
-		We put in an if statement for when the user correctly guesses a letter in the word. */
-		
-<<<<<<< HEAD
-		
-		
-=======
-	
-
->>>>>>> 299150956dc149f7f59d3edaa1a3a9811ef583df
-		if(hiddenWord.indexOf(userGuess) != -1)
+		//For loop, this is the block of code that detects if the guess was correct or not.
+		for(position = 0; position < WORD_LENGTH; ++position)
 		{
-			/*
-				System.out.println("True");
-				for(int x = 0; x < hiddenWord.length(); x++)
-				{
-					if(hiddenWord.charAt(x) != userGuess)
-					{
-						System.out.println("Not equal to");
-						continue;
-					}
-					if (hiddenWord.charAt(x) == userGuess)
-					{
-						x = letterAt;
-						letterToReplace = hiddenWord.charAt(letterAt);
-						StringBuilder alteredHiddenWord = new StringBuilder(newHiddenWord);
-						alteredHiddenWord.setCharAt(letterToReplace, userGuess);
-						
-						//newHiddenWord = newHiddenWord.replace((char) letterToReplace, userGuess);
-					}
-				}*/
-			
-			
-			System.out.println(newHiddenWord);
-			System.out.println("Correct!");
-			
-			//Use replaceAll to select regex (specific character) to replace. Replace the dashes with the userGuess character so that way
-			//the non matching characters can stay as dashes.
+			letter = hiddenWord.charAt(position);
+			if(letter == userGuess)
+			{
+				newHiddenWord = newHiddenWord.substring(0, position) + userGuess + newHiddenWord.substring(position + 1, WORD_LENGTH);
+				System.out.println(newHiddenWord);
+				System.out.println("Correct!");
+			}
 		}
-		else
+		
+		//If the guessed letter is not in the word, then it leads to the other methods to show you lost a try.
+		//indexOf will detect if the character is inside the string, if it isn't then it returns -1.
+		if(hiddenWord.indexOf(userGuess) == -1)
 		{
 			numberOfTries = numberOfTries - 1;
 			//If statements to display the other methods for gallows. Never repeats because the numberOfTries value always goes down by one,
@@ -128,7 +89,7 @@ public class HangmanGame
 				System.out.println(newHiddenWord);
 				System.out.println("Incorrect!");
 			}
-			
+			//Ends the game by going to the losing screen
 			if(numberOfTries == 1)
 			{
 				hangmanLeftLeg();
@@ -145,18 +106,18 @@ public class HangmanGame
 				victoryScreen();
 			}
 		}
-	}while(!lostGame);
+	}while(!lostGame || wordGuessed);
 	}
 	
 	private static void victoryScreen() {
-		System.out.println(hiddenWord);
 		System.out.println("Congratulations! You won!");
-
+		System.exit(0);
 	}
 	
 	private static void losingScreen() {
 		System.out.println("Oh, too bad! You lost! :(");
 		System.out.println("The actual word was " + hiddenWord);
+		System.exit(0);
 	}
 	
 	// Used to display hangman gallows
@@ -279,3 +240,4 @@ public class HangmanGame
 				"                    __/ |                      \r\n" + 
 				"                   |___/                       ");
 	}
+}
