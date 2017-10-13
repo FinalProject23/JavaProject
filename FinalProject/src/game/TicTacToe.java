@@ -7,28 +7,27 @@ import java.util.Random;
 public class TicTacToe {
 	static Scanner input = new Scanner(System.in);
 	static Random side = new Random();
-	static int userSide;
+	static char userSide;
   
 	public static void main(String[] args) {
 		final int SIZE = 3;
 		char[][] board = new char[SIZE][SIZE]; //game board
 		resetBoard(board); // initialize the board (with ' ' for all cells)
-		
-		System.out.println(" _   _      _             _             \r\n" + 
-				"| | (_)    | |           | |            \r\n" + 
-				"| |_ _  ___| |_ __ _  ___| |_ ___   ___ \r\n" + 
-				"| __| |/ __| __/ _` |/ __| __/ _ \\ / _ \\\r\n" + 
-				"| |_| | (__| || (_| | (__| || (_) |  __/\r\n" + 
-				" \\__|_|\\___|\\__\\__,_|\\___|\\__\\___/ \\___|");
+		display();
 		
 		System.out.println();
 		System.out.println("Welcome to tic tac toe!");
 		showBoard(board);
+		System.out.println("User 1, choose X or O: ");
+		userSide = input.next().charAt(0);
 		
-		
-		
-
+		if(userSide == 'X' || userSide == 'x')
+		{
+			
+		}
 	}
+	
+	
 	private static void resetBoard(char[][] board) 
 	{
 		for (int i = 0; i < board.length; i++)
@@ -36,6 +35,7 @@ public class TicTacToe {
 				board[i][j] = ' ';
 		
 	}
+	
 	private static void showBoard(char[][] board) 
 	{
 		int numRow = board.length;
@@ -69,13 +69,23 @@ public class TicTacToe {
 			}
 		}
 		System.out.println();
-		
 	}
+	
 	public static void board()
 	{
 		
 		
 		 
+	}
+	
+	public static void display()
+	{
+		System.out.println(" _   _      _             _             \r\n" + 
+				"| | (_)    | |           | |            \r\n" + 
+				"| |_ _  ___| |_ __ _  ___| |_ ___   ___ \r\n" + 
+				"| __| |/ __| __/ _` |/ __| __/ _ \\ / _ \\\r\n" + 
+				"| |_| | (__| || (_| | (__| || (_) |  __/\r\n" + 
+				" \\__|_|\\___|\\__\\__,_|\\___|\\__\\___/ \\___|");
 	}
 
 }
