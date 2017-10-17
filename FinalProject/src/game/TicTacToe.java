@@ -13,13 +13,9 @@ public class TicTacToe {
 
 	public static void main(String[] args) {
 		final int SIZE = 3;
-		char[][] board = new char[SIZE][SIZE]; //game board
-<<<<<<< HEAD
-		resetBoard(board); //Initialize board with  ' ' cells
-		
-=======
+		char[][] board = new char[SIZE][SIZE]; //game boar
 		resetBoard(board); // initialize the board (with ' ' for all cells)
->>>>>>> 8e0182903a91021cdc8e1fc490348235e628e01a
+
 		System.out.println(" _   _      _             _             \r\n" + 
 				"| | (_)    | |           | |            \r\n" + 
 				"| |_ _  ___| |_ __ _  ___| |_ ___   ___ \r\n" + 
@@ -38,15 +34,6 @@ public class TicTacToe {
 		char player1Move = sc.next().toLowerCase().charAt(0);
 		char player2Move = (player1Move == '1') ? '2' : '1';
 		showBoard(board);
-
-		System.out.println("User 1, choose X or O: ");
-		userSide = input.next().charAt(0);
-		
-		if(userSide == 'X' || userSide == 'x')
-		{
-			
-		}
-	}
 	
 	
 
@@ -96,32 +83,18 @@ public class TicTacToe {
 			System.out.println("\n** Player 2 won! Congratulations!!.. try next time player1! **");
 		else 
 			System.out.println("\n** It seems to have become a Draw **");
-		
-		
-		
-		
-		
-		
-		
-<<<<<<< HEAD
-	}private static void resetBoard(char[][] board) 
-=======
-	}
 	
+	}
 
 	private static void resetBoard(char[][] board) 
->>>>>>> 8e0182903a91021cdc8e1fc490348235e628e01a
+
 	{
 		for (int i = 0; i < board.length; i++)
 			for (int j = 0; j < board[0].length; j++)
 				board[i][j] = ' ';
 		
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 8e0182903a91021cdc8e1fc490348235e628e01a
 	private static void showBoard(char [][] board) 
 	{
 		int numRow = board.length;
@@ -225,3 +198,4 @@ public class TicTacToe {
 		return win;
 	}
 }	
+
