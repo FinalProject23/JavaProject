@@ -1,20 +1,18 @@
 package game;
 
 import java.util.Scanner;
-import java.util.Random;
 
 //This is tic tac toe game made in Java. 
 public class TicTacToe {
 	static Scanner sc = new Scanner(System.in);
-	static Random side = new Random();
 	static char player1Symbol;
 	static char player2Symbol;
-	static int userSide;
 
 	public static void main(String[] args) {
 		final int SIZE = 3;
-		char[][] board = new char[SIZE][SIZE]; //game board
+		char[][] board = new char[SIZE][SIZE]; //game boar
 		resetBoard(board); // initialize the board (with ' ' for all cells)
+
 		System.out.println(" _   _      _             _             \r\n" + 
 				"| | (_)    | |           | |            \r\n" + 
 				"| |_ _  ___| |_ __ _  ___| |_ ___   ___ \r\n" + 
@@ -25,23 +23,12 @@ public class TicTacToe {
 		System.out.println();
 		System.out.println("Welcome to tic tac toe!");
 		System.out.println("Which Symbol would you like to play as, \"x\" or \"o\"? ");
-		 char player1Symbol = sc.next().toLowerCase().charAt(0);
-		 char player2Symbol = (player1Symbol == 'x') ? 'o' : 'x';
-		 System.out.println("Player 2 will be " + player2Symbol + ".");
-		 
+		char player1Symbol = sc.next().toLowerCase().charAt(0);
+		char player2Symbol = (player1Symbol == 'x') ? 'o' : 'x';
+		System.out.println("Player 2 will be " + player2Symbol + ".");
 		System.out.println("Would you like to go first \"1st\" or second \"2nd\"? ");
 		char player1Move = sc.next().toLowerCase().charAt(0);
-		char player2Move = (player1Move == '1') ? '2' : '1';
 		showBoard(board);
-
-		System.out.println("User 1, choose X or O: ");
-		userSide = input.next().charAt(0);
-		
-		if(userSide == 'X' || userSide == 'x')
-		{
-			
-		}
-	}
 	
 	
 
@@ -91,17 +78,11 @@ public class TicTacToe {
 			System.out.println("\n** Player 2 won! Congratulations!!.. try next time player1! **");
 		else 
 			System.out.println("\n** It seems to have become a Draw **");
-		
-		
-		
-		
-		
-		
-		
-	}
 	
+	}
 
 	private static void resetBoard(char[][] board) 
+
 	{
 		for (int i = 0; i < board.length; i++)
 			for (int j = 0; j < board[0].length; j++)
@@ -146,7 +127,7 @@ public class TicTacToe {
 
 	public static void user1Play(char[][] board, char player1Symbol)
 	{
-		System.out.print("\nPlayer 1 will go first please enter the row number and then the column number that you wish to place your piece");
+		System.out.print("\nPlayer 1 will go please enter the row number and then the column number that you wish to place your piece");
 		int rowIndex = sc.nextInt();
 		int colIndex = sc.nextInt();
 		
@@ -160,7 +141,7 @@ public class TicTacToe {
 	}
 	public static void user2Play(char [][] board, char player2Symbol)
 	{
-		System.out.print("\nPlayer 2 will go first please enter the row number and then the column number you that wish to place your piece");
+		System.out.print("\nPlayer 2 will go please enter the row number and then the column number you that wish to place your piece");
 		int rowIndex = sc.nextInt();
 		int colIndex = sc.nextInt();
 		

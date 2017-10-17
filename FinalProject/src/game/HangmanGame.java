@@ -272,6 +272,3 @@ public class HangmanGame
 	}
 
 }
-
-
-
