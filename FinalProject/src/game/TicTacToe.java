@@ -15,7 +15,6 @@ public class TicTacToe {
 		final int SIZE = 3;
 		char[][] board = new char[SIZE][SIZE]; //game board
 		resetBoard(board); // initialize the board (with ' ' for all cells)
-		
 		System.out.println(" _   _      _             _             \r\n" + 
 				"| | (_)    | |           | |            \r\n" + 
 				"| |_ _  ___| |_ __ _  ___| |_ ___   ___ \r\n" + 
@@ -34,6 +33,18 @@ public class TicTacToe {
 		char player1Move = sc.next().toLowerCase().charAt(0);
 		char player2Move = (player1Move == '1') ? '2' : '1';
 		showBoard(board);
+
+		System.out.println("User 1, choose X or O: ");
+		userSide = input.next().charAt(0);
+		
+		if(userSide == 'X' || userSide == 'x')
+		{
+			
+		}
+	}
+	
+	
+
 		int turn; // 0 -- the player1, 1 -- the player2
 		int remainCount = SIZE * SIZE; // empty cell count
 		//The First Move.
@@ -89,6 +100,7 @@ public class TicTacToe {
 		
 	}
 	
+
 	private static void resetBoard(char[][] board) 
 	{
 		for (int i = 0; i < board.length; i++)
@@ -96,6 +108,7 @@ public class TicTacToe {
 				board[i][j] = ' ';
 		
 	}
+
 	private static void showBoard(char [][] board) 
 	{
 		int numRow = board.length;
@@ -129,8 +142,8 @@ public class TicTacToe {
 			}
 		}
 		System.out.println();
-		
 	}
+
 	public static void user1Play(char[][] board, char player1Symbol)
 	{
 		System.out.print("\nPlayer 1 will go first please enter the row number and then the column number that you wish to place your piece");
