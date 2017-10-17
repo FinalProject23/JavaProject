@@ -22,6 +22,7 @@ public class HangmanGame
 	static int numberOfTries = 6;
   
 	public static void main(String[] args) {
+		//Declare all local variables.
 		boolean wordGuessed = false, lostGame = false;
 		//Make variable to be used later on, when replacing dashes in the hidden word.
 		int position = 0;
@@ -49,6 +50,7 @@ public class HangmanGame
 			userInput = input.next();
 			userGuess = userInput.charAt(0);
 			lettersGuessed.add(0, userInput);
+			//Simply convert the userInput into userGuess (String to char by using .charAt())
 		
 		//For loop, this is the block of code that detects if the guess was correct or not.
 		for(position = 0; position < WORD_LENGTH; ++position)
@@ -62,6 +64,8 @@ public class HangmanGame
 					System.out.println(lettersGuessed);
 					System.out.println("Correct!");
 					}
+				//Continue keeps running the for loop so it can check for any other characters that match (ex: you guess e, there are two "e"s, and it 
+				//fills them in instead of you having to type it twice.
 				continue;
 				}
 		
