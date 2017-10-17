@@ -270,4 +270,8 @@ public class HangmanGame
 				"                    __/ |                      \r\n" + 
 				"                   |___/                       ");
 	}
+
 }
+
+
+
