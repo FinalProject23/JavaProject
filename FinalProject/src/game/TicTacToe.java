@@ -14,7 +14,7 @@ public class TicTacToe {
 	public static void main(String[] args) {
 		final int SIZE = 3;
 		char[][] board = new char[SIZE][SIZE]; //game board
-		resetBoard(board); // initialize the board (with ' ' for all cells)
+		resetBoard(board); //Initialize board with  ' ' cells
 		
 		System.out.println(" _   _      _             _             \r\n" + 
 				"| | (_)    | |           | |            \r\n" + 
@@ -87,15 +87,14 @@ public class TicTacToe {
 		
 		
 		
-	}
-	
-	private static void resetBoard(char[][] board) 
+	}private static void resetBoard(char[][] board) 
 	{
 		for (int i = 0; i < board.length; i++)
 			for (int j = 0; j < board[0].length; j++)
 				board[i][j] = ' ';
 		
 	}
+	
 	private static void showBoard(char [][] board) 
 	{
 		int numRow = board.length;
