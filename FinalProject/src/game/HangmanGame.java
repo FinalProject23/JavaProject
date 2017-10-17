@@ -1,6 +1,8 @@
 package game;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /* This program is basically a hangman game but written in Java. Made for classwork/entertainment purposes only.
@@ -11,9 +13,8 @@ public class HangmanGame
 {
 	static Scanner input = new Scanner(System.in);
 	static Random random = new Random();
-	static char userGuess = 0;
 	//Create string array for words that are used in game. 
-	static String [] words = {"royal", "heavy", "scuzz", "memes", "dizzy", "abuzz"};
+	static String [] words = {"royal", "heavy", "cover", "dizzy", "abuzz", "agile", "worry", "humor", "minor", "doot", "pepe"};
 	//Randomly select a word from the word array.
 	static int word = random.nextInt(words.length);
 	static String hiddenWord = words[word], newHiddenWord = null;
@@ -21,15 +22,20 @@ public class HangmanGame
 	static int numberOfTries = 6;
   
 	public static void main(String[] args) {
+		//Declare all local variables.
 		boolean wordGuessed = false, lostGame = false;
 		//Make variable to be used later on, when replacing dashes in the hidden word.
 		int position = 0;
 		final int WORD_LENGTH = hiddenWord.length();
 		char letter = 0;
+		char userGuess = 0;
+		//Created so the List can take the input of the user for guessing, since it can't take char in userGuess
+		String userInput = null;
 		display();
 		hangman();
-		
-    
+		//List to hold all letters guessed into strings
+		List<String> lettersGuessed = new ArrayList<String>(); 
+
 		//Replaces all the characters in the word with "-"s
 		for(int x = 0; x < hiddenWord.length(); x++)
 			newHiddenWord = hiddenWord.replaceAll(".", "-");
@@ -40,23 +46,38 @@ public class HangmanGame
 		
 		//Do while loop so it at least executes once.
 		do {
-		System.out.println("Guess a (lowercase) letter >> ");
-		userGuess = input.next().charAt(0);
+			System.out.println("Guess a (lowercase) letter >> ");
+			userInput = input.next();
+			userGuess = userInput.charAt(0);
+			lettersGuessed.add(0, userInput);
+			//Simply convert the userInput into userGuess (String to char by using .charAt())
 		
 		//For loop, this is the block of code that detects if the guess was correct or not.
 		for(position = 0; position < WORD_LENGTH; ++position)
 		{
 			letter = hiddenWord.charAt(position);
-			if(letter == userGuess)
-			{
-				newHiddenWord = newHiddenWord.substring(0, position) + userGuess + newHiddenWord.substring(position + 1, WORD_LENGTH);
-				System.out.println(newHiddenWord);
-				System.out.println("Correct!");
-			}
-		}
+				if(letter == userGuess)
+				{
+					newHiddenWord = newHiddenWord.substring(0, position) + userGuess + newHiddenWord.substring(position + 1, WORD_LENGTH);
+					System.out.println(newHiddenWord);
+					System.out.println("Letters guessed so far are: ");
+					System.out.println(lettersGuessed);
+					System.out.println("Correct!");
+					}
+				//Continue keeps running the for loop so it can check for any other characters that match (ex: you guess e, there are two "e"s, and it 
+				//fills them in instead of you having to type it twice.
+				continue;
+				}
+		
+		/*This code will detect if a letter has been guessed already or not. 
+		if(lettersGuessed.indexOf(userInput) != -1)
+		{
+			System.out.println("That letter has already been guessed, please try again.");
+			continue;
+		}*/
 		
 		//If the guessed letter is not in the word, then it leads to the other methods to show you lost a try.
-		//indexOf will detect if the character is inside the string, if it isn't then it returns -1.
+		//indexOf tool will detect if the character is inside the string, if it isn't then it returns -1.
 		if(hiddenWord.indexOf(userGuess) == -1)
 		{
 			numberOfTries = numberOfTries - 1;
@@ -66,6 +87,8 @@ public class HangmanGame
 			{
 				hangmanHead();
 				System.out.println(newHiddenWord);
+				System.out.println("Letters guessed so far are: ");
+				System.out.println(lettersGuessed);
 				System.out.println("Incorrect!");
 			}
 
@@ -73,6 +96,8 @@ public class HangmanGame
 			{
 				hangmanRightArm();
 				System.out.println(newHiddenWord);
+				System.out.println("Letters guessed so far are: ");
+				System.out.println(lettersGuessed);
 				System.out.println("Incorrect!");
 			}
 				
@@ -80,6 +105,8 @@ public class HangmanGame
 			{
 				hangmanLeftArm();
 				System.out.println(newHiddenWord);
+				System.out.println("Letters guessed so far are: ");
+				System.out.println(lettersGuessed);
 				System.out.println("Incorrect!");
 			}
 					
@@ -87,6 +114,8 @@ public class HangmanGame
 			{	
 				hangmanRightLeg();
 				System.out.println(newHiddenWord);
+				System.out.println("Letters guessed so far are: ");
+				System.out.println(lettersGuessed);
 				System.out.println("Incorrect!");
 			}
 			//Ends the game by going to the losing screen
@@ -107,8 +136,9 @@ public class HangmanGame
 			}
 		}
 	}while(!lostGame || wordGuessed);
-	}
 	
+	}
+
 	private static void victoryScreen() {
 		System.out.println("Congratulations! You won!");
 		System.exit(0);
