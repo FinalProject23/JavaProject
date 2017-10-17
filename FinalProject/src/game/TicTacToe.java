@@ -11,7 +11,6 @@ public class TicTacToe {
 	static char player2Symbol;
 	static int userSide;
 
-	
 	public static void main(String[] args) {
 		final int SIZE = 3;
 		char[][] board = new char[SIZE][SIZE]; //game board
