@@ -1,15 +1,12 @@
 package game;
 
 import java.util.Scanner;
-import java.util.Random;
 
 //This is tic tac toe game made in Java. 
 public class TicTacToe {
 	static Scanner sc = new Scanner(System.in);
-	static Random side = new Random();
 	static char player1Symbol;
 	static char player2Symbol;
-	static int userSide;
 
 	public static void main(String[] args) {
 		final int SIZE = 3;
@@ -26,13 +23,11 @@ public class TicTacToe {
 		System.out.println();
 		System.out.println("Welcome to tic tac toe!");
 		System.out.println("Which Symbol would you like to play as, \"x\" or \"o\"? ");
-		 char player1Symbol = sc.next().toLowerCase().charAt(0);
-		 char player2Symbol = (player1Symbol == 'x') ? 'o' : 'x';
-		 System.out.println("Player 2 will be " + player2Symbol + ".");
-		 
+		char player1Symbol = sc.next().toLowerCase().charAt(0);
+		char player2Symbol = (player1Symbol == 'x') ? 'o' : 'x';
+		System.out.println("Player 2 will be " + player2Symbol + ".");
 		System.out.println("Would you like to go first \"1st\" or second \"2nd\"? ");
 		char player1Move = sc.next().toLowerCase().charAt(0);
-		char player2Move = (player1Move == '1') ? '2' : '1';
 		showBoard(board);
 	
 	
@@ -55,10 +50,10 @@ public class TicTacToe {
 		remainCount --;
 		// Counting playing the game until Player1 or Player2 wins
 		boolean done = false;
-		int winner = -1; // 0 -- the user, 1 -- the computer. -1 -- draw
+		int winner = -1; // 0 -- the user, 1 -- the other user. -1 -- draw
 		while(!done && remainCount > 0) {
-			// If there is a winner at this time, set t he winner and the done flag to true.
-			done = isGameWon(board, turn, player1Symbol, player2Symbol); // Did the turn won?
+			// If there is a winner at this time, set the winner and the done flag to true.
+			done = isGameWon(board, turn, player1Symbol, player2Symbol); // Did the turn win?
 			if(done)
 				winner = turn; // the one who made the last move won the game
 			else {
@@ -78,7 +73,7 @@ public class TicTacToe {
 		
 		//Winner is found. Declare winner.
 		if (winner == 0)
-			System.out.println("\n** Player 1 won! Congratulations!!.. try bex time player2! **");
+			System.out.println("\n** Player 1 won! Congratulations!!.. try next time player2! **");
 		else if (winner == 1)
 			System.out.println("\n** Player 2 won! Congratulations!!.. try next time player1! **");
 		else 
@@ -132,7 +127,7 @@ public class TicTacToe {
 
 	public static void user1Play(char[][] board, char player1Symbol)
 	{
-		System.out.print("\nPlayer 1 will go first please enter the row number and then the column number that you wish to place your piece");
+		System.out.print("\nPlayer 1 will go please enter the row number and then the column number that you wish to place your piece");
 		int rowIndex = sc.nextInt();
 		int colIndex = sc.nextInt();
 		
@@ -146,7 +141,7 @@ public class TicTacToe {
 	}
 	public static void user2Play(char [][] board, char player2Symbol)
 	{
-		System.out.print("\nPlayer 2 will go first please enter the row number and then the column number you that wish to place your piece");
+		System.out.print("\nPlayer 2 will go please enter the row number and then the column number you that wish to place your piece");
 		int rowIndex = sc.nextInt();
 		int colIndex = sc.nextInt();
 		
@@ -191,7 +186,7 @@ public class TicTacToe {
 				if (board[i][board.length - 1 - i] != symbol)
 					break;
 			}
-			if (i == board.length)
+			if (i == board[0].length)
 				win = true;
 		}
 		//Finally return win

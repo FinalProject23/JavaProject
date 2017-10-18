@@ -46,11 +46,17 @@ public class HangmanGame
 		
 		//Do while loop so it at least executes once.
 		do {
-			System.out.println("Guess a (lowercase) letter >> ");
+			System.out.println("\nGuess a (lowercase) letter >> ");
 			userInput = input.next();
 			userGuess = userInput.charAt(0);
+			if(lettersGuessed.contains(userInput))
+			{
+				System.out.println("That letter has already been guessed, please try again.");
+				continue;
+			}
 			lettersGuessed.add(0, userInput);
 			//Simply convert the userInput into userGuess (String to char by using .charAt())
+			
 		
 		//For loop, this is the block of code that detects if the guess was correct or not.
 		for(position = 0; position < WORD_LENGTH; ++position)
@@ -60,21 +66,14 @@ public class HangmanGame
 				{
 					newHiddenWord = newHiddenWord.substring(0, position) + userGuess + newHiddenWord.substring(position + 1, WORD_LENGTH);
 					System.out.println(newHiddenWord);
-					System.out.println("Letters guessed so far are: ");
+					System.out.println("\nLetters guessed so far are: ");
 					System.out.println(lettersGuessed);
-					System.out.println("Correct!");
+					System.out.println("\nCorrect!");
 					}
 				//Continue keeps running the for loop so it can check for any other characters that match (ex: you guess e, there are two "e"s, and it 
 				//fills them in instead of you having to type it twice.
 				continue;
 				}
-		
-		/*This code will detect if a letter has been guessed already or not. 
-		if(lettersGuessed.indexOf(userInput) != -1)
-		{
-			System.out.println("That letter has already been guessed, please try again.");
-			continue;
-		}*/
 		
 		//If the guessed letter is not in the word, then it leads to the other methods to show you lost a try.
 		//indexOf tool will detect if the character is inside the string, if it isn't then it returns -1.
@@ -87,7 +86,7 @@ public class HangmanGame
 			{
 				hangmanHead();
 				System.out.println(newHiddenWord);
-				System.out.println("Letters guessed so far are: ");
+				System.out.println("\nLetters guessed so far are: ");
 				System.out.println(lettersGuessed);
 				System.out.println("Incorrect!");
 			}
@@ -272,6 +271,3 @@ public class HangmanGame
 	}
 
 }
-
-
-
