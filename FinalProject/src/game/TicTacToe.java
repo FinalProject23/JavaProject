@@ -50,10 +50,10 @@ public class TicTacToe {
 		remainCount --;
 		// Counting playing the game until Player1 or Player2 wins
 		boolean done = false;
-		int winner = -1; // 0 -- the user, 1 -- the computer. -1 -- draw
+		int winner = -1; // 0 -- the user, 1 -- the other user. -1 -- draw
 		while(!done && remainCount > 0) {
-			// If there is a winner at this time, set t he winner and the done flag to true.
-			done = isGameWon(board, turn, player1Symbol, player2Symbol); // Did the turn won?
+			// If there is a winner at this time, set the winner and the done flag to true.
+			done = isGameWon(board, turn, player1Symbol, player2Symbol); // Did the turn win?
 			if(done)
 				winner = turn; // the one who made the last move won the game
 			else {
@@ -73,7 +73,7 @@ public class TicTacToe {
 		
 		//Winner is found. Declare winner.
 		if (winner == 0)
-			System.out.println("\n** Player 1 won! Congratulations!!.. try bex time player2! **");
+			System.out.println("\n** Player 1 won! Congratulations!!.. try next time player2! **");
 		else if (winner == 1)
 			System.out.println("\n** Player 2 won! Congratulations!!.. try next time player1! **");
 		else 
@@ -186,7 +186,7 @@ public class TicTacToe {
 				if (board[i][board.length - 1 - i] != symbol)
 					break;
 			}
-			if (i == board.length)
+			if (i == board[0].length)
 				win = true;
 		}
 		//Finally return win
